@@ -87,6 +87,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 		Date timeCreated=new Date();
 		loanDetails.setTimeCreated(timeCreated);
 		loanDetails.setCreditStatus("new");
+		loanDetails.setLoanAmount(requestPojo.getLoanAmount());
 		LoanDetails loanDetailResult=loanRepository.save(loanDetails);
 		if(loanDetailResult!=null)
 		{
