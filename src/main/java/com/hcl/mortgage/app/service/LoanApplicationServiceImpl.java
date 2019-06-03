@@ -88,22 +88,12 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 		loanDetails.setTimeCreated(timeCreated);
 		loanDetails.setCreditStatus("new");
 		loanDetails.setLoanAmount(requestPojo.getLoanAmount());
-		LoanDetails loanDetailResult=loanRepository.save(loanDetails);
-		if(loanDetailResult!=null)
-		{
-			CreateResponse response=new CreateResponse();
-			response.setMessage("loanDetail added succesfully");
-			return ResponseEntity.status(201).body(response);
+		loanRepository.save(loanDetails);
+		CreateResponse response=new CreateResponse();
+		response.setMessage("loanDetail added succesfully");
+		return ResponseEntity.status(201).body(response);
 
-		}
-		else
-		{
-			CreateResponse response=new CreateResponse();
-			response.setMessage("data not saved. sorry try again ");
-			
-			return ResponseEntity.status(401).body(response);
-
-		}
+		
 
 	}
 
