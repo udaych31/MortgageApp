@@ -7,5 +7,10 @@ import com.hcl.mortgage.app.entity.LoanDetails;
 
 @Repository
 public interface LoanDetailRepository extends JpaRepository<LoanDetails, Long> {
+	
+	
+	
+	
+	
 
 }
