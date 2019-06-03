@@ -2,7 +2,9 @@ package com.hcl.mortgage.app.dto;
 
 import java.io.Serializable;
 
-public class LoanEligibleResponse implements Serializable {
+import com.hcl.mortgage.app.util.ExceptionResponse;
+
+public class LoanEligibleResponse extends ExceptionResponse implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	

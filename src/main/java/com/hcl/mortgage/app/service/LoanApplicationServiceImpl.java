@@ -12,12 +12,15 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.hcl.mortgage.app.dto.ApplicationQueueListResponse;
 import com.hcl.mortgage.app.dto.ApplicationRequest;
 import com.hcl.mortgage.app.dto.ApplicationResponse;
 import com.hcl.mortgage.app.dto.CreateResponse;
 import com.hcl.mortgage.app.dto.LoanDTO;
+import com.hcl.mortgage.app.dto.LoanEligibleRequest;
+import com.hcl.mortgage.app.dto.LoanEligibleResponse;
 import com.hcl.mortgage.app.dto.QueueListDto;
 import com.hcl.mortgage.app.dto.RequestPojo;
 import com.hcl.mortgage.app.dto.ViewApplicationResponse;
@@ -32,6 +35,8 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 	
 	@Autowired
 	private LoanDetailRepository loanDetailRepository;
+	
+	private static final String HOST_NAME="http://localhost:8085/bankapp/bank/accessapplication";
 
 
 	@Override
@@ -207,6 +212,26 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 		response.setApplicationId("Loan Application Id " +loandetail.getLoanId());
 		return ResponseEntity.status(201).body(response);
 
+	}
+	
+	@Override
+	public LoanEligibleResponse checkEligibilityForLoan(LoanEligibleRequest request) throws LoanServiceException {
+		LoanEligibleResponse response=null;
+		try {
+			RestTemplate rest=new RestTemplate();
+			ResponseEntity<LoanEligibleResponse> responseEntity = rest.postForEntity(HOST_NAME, request, LoanEligibleResponse.class);
+			response = responseEntity.getBody();
+			
+		} catch (Exception e) {
+			response=new LoanEligibleResponse();
+			response.setErrorMsg(e.getMessage());
+			response.setRequestUri(HOST_NAME);
+			response.setStatusCode(500);
+			response.setStatus("INTERNALSERVERERROR");
+			logger.error(this.getClass().getName()+" checkEligibilityForLoan :"+e.getMessage());
+		}
+		return response;
+		
 	}
 
 }
