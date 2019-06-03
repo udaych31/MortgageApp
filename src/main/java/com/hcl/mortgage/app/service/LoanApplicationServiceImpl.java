@@ -203,6 +203,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 		 LoanDetails loandetail=loanDetailRepository.save(loanDetails);
 		CreateResponse response = new CreateResponse();
 		response.setMessage("loanDetail added succesfully");
+		if(loandetail!=null)
 		response.setApplicationId("Loan Application Id " +loandetail.getLoanId());
 		return ResponseEntity.status(201).body(response);
 
