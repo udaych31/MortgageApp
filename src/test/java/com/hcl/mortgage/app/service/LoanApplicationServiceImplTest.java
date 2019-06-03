@@ -35,7 +35,7 @@ public class LoanApplicationServiceImplTest {
 		requestPojo.setLastName("khan");
 		requestPojo.setLoanAmount(1000.0);
 		ResponseEntity<CreateResponse> result=LoanApplicationServiceImpl.createapplication(requestPojo);
-	   assertEquals(result.getStatusCodeValue(), 201);
+	   assertEquals(201,result.getStatusCodeValue());
 	
 		
 	

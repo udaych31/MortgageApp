@@ -1,15 +1,6 @@
 package com.hcl.mortgage.app.service;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.hcl.mortgage.app.dto.LoanDTO;
-import com.hcl.mortgage.app.dto.ViewApplicationResponse;
-import com.hcl.mortgage.app.entity.LoanDetails;
-import com.hcl.mortgage.app.repository.LoanDetailRepository;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -26,8 +17,10 @@ import com.hcl.mortgage.app.dto.ApplicationQueueListResponse;
 import com.hcl.mortgage.app.dto.ApplicationRequest;
 import com.hcl.mortgage.app.dto.ApplicationResponse;
 import com.hcl.mortgage.app.dto.CreateResponse;
+import com.hcl.mortgage.app.dto.LoanDTO;
 import com.hcl.mortgage.app.dto.QueueListDto;
 import com.hcl.mortgage.app.dto.RequestPojo;
+import com.hcl.mortgage.app.dto.ViewApplicationResponse;
 import com.hcl.mortgage.app.entity.LoanDetails;
 import com.hcl.mortgage.app.repository.LoanDetailRepository;
 import com.hcl.mortgage.app.util.LoanServiceException;
@@ -133,6 +126,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 
 			}
 		} catch (Exception e) {
+			response=new ApplicationResponse();
 			response.setMessage(e.getMessage());
 			response.setStatusCode(404);
 			logger.error(logger.getClass().getName() + " Update Not Success" + e.getMessage());
