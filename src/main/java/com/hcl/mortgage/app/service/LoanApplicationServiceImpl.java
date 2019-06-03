@@ -62,7 +62,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 
 
 	@Override
-	public ApplicationResponse updateStatus(ApplicationRequest request) {
+	public ApplicationResponse updateApplication(ApplicationRequest request) {
 
 		logger.info("enter into updateCredit status method");
 		ApplicationResponse response = null;
@@ -84,12 +84,17 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 								+ " can not update as NEW application");
 
 					}
-
+                    
+					if(request.getAddress()!=null)
 					loanDetail.setAddress(request.getAddress());
+					if(request.getApplicantIncome()!=null)
 					loanDetail.setApplicantIncome(request.getApplicantIncome());
 					loanDetail.setCreditStatus("NEW");
+					if(request.getFirstName()!=null)
 					loanDetail.setFirstName(request.getFirstName());
+					if(request.getLastName()!=null)
 					loanDetail.setLastName(request.getLastName());
+					if(request.getLoanAmount()!=null)
 					loanDetail.setLoanAmount(request.getLoanAmount());
 					loanDetail.setTimeCreated(new Date());
 					loanDetailRepository.save(loanDetail);
@@ -117,7 +122,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 
 						throw new LoanServiceException("Loan was alredy " + loanDetail.getCreditStatus());
 					}
-					loanDetail.setCreditStatus("FUNDED");
+					loanDetail.setCreditStatus("FUNDCOMPLETED");
 					loanDetailRepository.save(loanDetail);
 					response.setMessage("FUNDED successfully with reference number: " + request.getLoanId());
 					response.setStatusCode(200);
@@ -195,9 +200,10 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 		loanDetails.setTimeCreated(timeCreated);
 		loanDetails.setCreditStatus("new");
 		loanDetails.setLoanAmount(requestPojo.getLoanAmount());
-		loanDetailRepository.save(loanDetails);
+		 LoanDetails loandetail=loanDetailRepository.save(loanDetails);
 		CreateResponse response = new CreateResponse();
 		response.setMessage("loanDetail added succesfully");
+		response.setApplicationId("Loan Application Id " +loandetail.getLoanId());
 		return ResponseEntity.status(201).body(response);
 
 	}

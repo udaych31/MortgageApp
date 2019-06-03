@@ -14,7 +14,6 @@ public class ApplicationRequest implements Serializable {
 	private String creditStatus;
 	private Double applicantIncome;
 	private Double loanAmount;
-	private Date timeCreated;
 
 	public Long getLoanId() {
 		return loanId;
@@ -72,12 +71,5 @@ public class ApplicationRequest implements Serializable {
 		this.loanAmount = loanAmount;
 	}
 
-	public Date getTimeCreated() {
-		return timeCreated;
-	}
-
-	public void setTimeCreated(Date timeCreated) {
-		this.timeCreated = timeCreated;
-	}
 
 }

@@ -39,7 +39,7 @@ public class LoanApplicationController {
 	@PutMapping("/updateCreditStatus")
 	public ApplicationResponse updateCreditStatus(@RequestBody ApplicationRequest request) {
 		
-		  return loanApplicationService.updateStatus(request);
+		  return loanApplicationService.updateApplication(request);
 	}
 
 	

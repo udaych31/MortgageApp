@@ -12,7 +12,7 @@ import com.hcl.mortgage.app.dto.ViewApplicationResponse;
 
 public interface LoanApplicationService {
 	
-	 public ApplicationResponse updateStatus(ApplicationRequest request);
+	 public ApplicationResponse updateApplication(ApplicationRequest request);
 	
 	public ApplicationQueueListResponse getAllLoanApplications();
 
