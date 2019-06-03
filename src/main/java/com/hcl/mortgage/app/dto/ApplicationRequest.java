@@ -1,59 +1,23 @@
-package com.hcl.mortgage.app.entity;
+package com.hcl.mortgage.app.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+public class ApplicationRequest implements Serializable {
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
-@Data
-@Getter
-@Setter
-@Entity
-@Table(name="LOAN_DETAIL")
-public class LoanDetails implements Serializable {
-	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long loanId;
-	
-	@Column
 	private String firstName;
-	
-	@Column
 	private String lastName;
-	
-	@Column
 	private String address;
-	
-	@Column
 	private String creditStatus;
-	
-	@Column
 	private Double applicantIncome;
-	
-	@Column
 	private Double loanAmount;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(columnDefinition = "DATETIME")
 	private Date timeCreated;
-	
-	public LoanDetails() {
-		super();
-	}
 
 	public Long getLoanId() {
 		return loanId;
@@ -118,4 +82,5 @@ public class LoanDetails implements Serializable {
 	public void setTimeCreated(Date timeCreated) {
 		this.timeCreated = timeCreated;
 	}
+
 }
