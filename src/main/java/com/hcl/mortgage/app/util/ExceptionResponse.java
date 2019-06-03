@@ -1,12 +1,5 @@
 package com.hcl.mortgage.app.util;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
-@Data
-@Getter
-@Setter
 public class ExceptionResponse {
 
 	private String errorMsg;

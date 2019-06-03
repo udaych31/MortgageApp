@@ -1,19 +1,12 @@
 package com.hcl.mortgage.app.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.hcl.mortgage.app.dto.ViewApplicationResponse;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +18,7 @@ import com.hcl.mortgage.app.dto.ApplicationRequest;
 import com.hcl.mortgage.app.dto.ApplicationResponse;
 import com.hcl.mortgage.app.dto.CreateResponse;
 import com.hcl.mortgage.app.dto.RequestPojo;
+import com.hcl.mortgage.app.dto.ViewApplicationResponse;
 import com.hcl.mortgage.app.service.LoanApplicationService;
 
 @RestController
@@ -45,11 +39,7 @@ public class LoanApplicationController {
 	@PutMapping("/updateCreditStatus")
 	public ApplicationResponse updateCreditStatus(@RequestBody ApplicationRequest request) {
 		
-		  ApplicationResponse response=loanApplicationService.updateStatus(request);
-		  return response;
-		
-		
-		
+		  return loanApplicationService.updateStatus(request);
 	}
 
 	

@@ -5,9 +5,6 @@ import java.util.Date;
 
 public class ApplicationRequest implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private Long loanId;
