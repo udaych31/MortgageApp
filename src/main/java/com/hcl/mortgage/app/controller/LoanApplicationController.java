@@ -9,6 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.mortgage.app.dto.ApplicationQueueListResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.hcl.mortgage.app.dto.RequestPojo;
+import com.hcl.mortgage.app.dto.CreateResponse;
 import com.hcl.mortgage.app.service.LoanApplicationService;
 
 @RestController
@@ -29,5 +38,11 @@ public class LoanApplicationController {
 		return loanService.getAllLoanApplications();
 	}
 	
-
+	@PostMapping("/createapplication")
+	public ResponseEntity<CreateResponse> createapplication(@RequestBody RequestPojo requestPojo)
+	{
+		 ResponseEntity<CreateResponse> res=loanService.createapplication(requestPojo);
+		 return res;
+		
+	}
 }

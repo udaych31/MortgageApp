@@ -1,6 +1,7 @@
 package com.hcl.mortgage.app.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,10 +9,13 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.hcl.mortgage.app.dto.ApplicationQueueListResponse;
+import com.hcl.mortgage.app.dto.CreateResponse;
 import com.hcl.mortgage.app.dto.QueueListDto;
+import com.hcl.mortgage.app.dto.RequestPojo;
 import com.hcl.mortgage.app.entity.LoanDetails;
 import com.hcl.mortgage.app.repository.LoanDetailRepository;
 import com.hcl.mortgage.app.util.LoanStatus;
@@ -72,6 +76,34 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 		}
 
 		return response;
+	}
+	@Override
+	public ResponseEntity<CreateResponse> createapplication(RequestPojo requestPojo) {
+		LoanDetails loanDetails=new LoanDetails();
+		loanDetails.setApplicantIncome(requestPojo.getApplicantIncome());
+		loanDetails.setAddress(requestPojo.getAddress());
+		loanDetails.setFirstName(requestPojo.getFirstName());
+		loanDetails.setLastName(requestPojo.getLastName());
+		Date timeCreated=new Date();
+		loanDetails.setTimeCreated(timeCreated);
+		loanDetails.setCreditStatus("new");
+		LoanDetails loanDetailResult=loanRepository.save(loanDetails);
+		if(loanDetailResult!=null)
+		{
+			CreateResponse response=new CreateResponse();
+			response.setMessage("loanDetail added succesfully");
+			return ResponseEntity.status(201).body(response);
+
+		}
+		else
+		{
+			CreateResponse response=new CreateResponse();
+			response.setMessage("data not saved. sorry try again ");
+			
+			return ResponseEntity.status(401).body(response);
+
+		}
+
 	}
 
 }
