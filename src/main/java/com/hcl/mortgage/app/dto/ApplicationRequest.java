@@ -1,7 +1,6 @@
 package com.hcl.mortgage.app.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class ApplicationRequest implements Serializable {
 
@@ -14,7 +13,6 @@ public class ApplicationRequest implements Serializable {
 	private String creditStatus;
 	private Double applicantIncome;
 	private Double loanAmount;
-	private Date timeCreated;
 
 	public Long getLoanId() {
 		return loanId;
@@ -72,12 +70,5 @@ public class ApplicationRequest implements Serializable {
 		this.loanAmount = loanAmount;
 	}
 
-	public Date getTimeCreated() {
-		return timeCreated;
-	}
-
-	public void setTimeCreated(Date timeCreated) {
-		this.timeCreated = timeCreated;
-	}
 
 }

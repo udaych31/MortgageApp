@@ -28,14 +28,26 @@ public class LoanApplicationServiceImplTest {
 	@Test
 	public void LoanApplicationServiceImpl() {
 		
+		
 		RequestPojo requestPojo=new RequestPojo();
 		requestPojo.setAddress("khan");
 		requestPojo.setApplicantIncome(10000.0);
 		requestPojo.setFirstName("khan");
 		requestPojo.setLastName("khan");
 		requestPojo.setLoanAmount(1000.0);
+		
+		
+		LoanDetails details=new LoanDetails();
+		details.setAddress(requestPojo.getAddress());
+		details.setApplicantIncome(requestPojo.getApplicantIncome());
+		details.setFirstName(requestPojo.getFirstName());
+		details.setLastName(requestPojo.getLastName());
+		details.setLoanAmount(requestPojo.getLoanAmount());
+		details.setLoanId(1L);
+		
 		ResponseEntity<CreateResponse> result=LoanApplicationServiceImpl.createapplication(requestPojo);
-	   assertEquals(201,result.getStatusCodeValue());
+	   
+		assertEquals(201,result.getStatusCodeValue());
 	
 		
 	
