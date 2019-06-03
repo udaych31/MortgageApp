@@ -1,6 +1,6 @@
 package com.hcl.mortgage.app.dto;
 
-public class createResponse {
+public class CreateResponse {
 	String message;
 
 	public String getMessage() {

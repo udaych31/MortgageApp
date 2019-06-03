@@ -2,11 +2,14 @@ package com.hcl.mortgage.app.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 
 public class RequestPojo implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String firstName;
 	private String lastName;
 	private String address;

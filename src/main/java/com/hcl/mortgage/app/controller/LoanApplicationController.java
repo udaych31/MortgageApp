@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hcl.mortgage.app.dto.CreateResponse;
 import com.hcl.mortgage.app.dto.RequestPojo;
-import com.hcl.mortgage.app.dto.createResponse;
 import com.hcl.mortgage.app.service.LoanApplicationService;
 
 @RestController
@@ -18,10 +18,9 @@ public class LoanApplicationController {
 	@Autowired
 	LoanApplicationService loanApplicationService;
 	@PostMapping("/createapplication")
-	public ResponseEntity<createResponse> createapplication(@RequestBody RequestPojo requestPojo)
+	public ResponseEntity<CreateResponse> createapplication(@RequestBody RequestPojo requestPojo)
 	{
-		 ResponseEntity<createResponse> res=loanApplicationService.createapplication(requestPojo);
-		 return res;
+		 return loanApplicationService.createapplication(requestPojo);
 		
 	}
 }

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.hcl.mortgage.app.dto.CreateResponse;
 import com.hcl.mortgage.app.dto.RequestPojo;
-import com.hcl.mortgage.app.dto.createResponse;
 import com.hcl.mortgage.app.entity.LoanDetails;
 import com.hcl.mortgage.app.repository.LoanDetailRepository;
 
@@ -17,8 +17,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 	@Autowired
 	LoanDetailRepository loanDetailRepository;
 	@Override
-	public ResponseEntity<createResponse> createapplication(RequestPojo requestPojo) {
-		// TODO Auto-generated method stub
+	public ResponseEntity<CreateResponse> createapplication(RequestPojo requestPojo) {
 		LoanDetails loanDetails=new LoanDetails();
 		loanDetails.setApplicantIncome(requestPojo.getApplicantIncome());
 		loanDetails.setAddress(requestPojo.getAddress());
@@ -27,22 +26,11 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
 		Date timeCreated=new Date();
 		loanDetails.setTimeCreated(timeCreated);
 		loanDetails.setCreditStatus("new");
-		LoanDetails loanDetailResult=loanDetailRepository.save(loanDetails);
-		if(loanDetailResult!=null)
-		{
-			createResponse response=new createResponse();
-			response.setMessage("loanDetail added succesfully");
-			return ResponseEntity.status(201).body(response);
-
-		}
-		else
-		{
-			createResponse response=new createResponse();
-			response.setMessage("data not saved. sorry try again ");
-			
-			return ResponseEntity.status(401).body(response);
-
-		}
+		loanDetails.setLoanAmount(requestPojo.getLoanAmount());
+		loanDetailRepository.save(loanDetails);
+		CreateResponse response=new CreateResponse();
+		response.setMessage("loanDetail added succesfully");
+		return ResponseEntity.status(201).body(response);
 
 	}
 
