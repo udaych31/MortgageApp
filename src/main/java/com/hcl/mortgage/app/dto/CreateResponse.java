@@ -1,7 +1,9 @@
 package com.hcl.mortgage.app.dto;
 
 public class CreateResponse {
-	String message;
+	private String message;
+	private String applicationId;
+	
 
 	public String getMessage() {
 		return message;
@@ -10,6 +12,15 @@ public class CreateResponse {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	public String getApplicationId() {
+		return applicationId;
+	}
+
+	public void setApplicationId(String applicationId) {
+		this.applicationId = applicationId;
+	}
+
 	
 
 }

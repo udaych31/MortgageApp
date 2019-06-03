@@ -17,9 +17,12 @@ import com.hcl.mortgage.app.dto.ApplicationQueueListResponse;
 import com.hcl.mortgage.app.dto.ApplicationRequest;
 import com.hcl.mortgage.app.dto.ApplicationResponse;
 import com.hcl.mortgage.app.dto.CreateResponse;
+import com.hcl.mortgage.app.dto.LoanEligibleRequest;
+import com.hcl.mortgage.app.dto.LoanEligibleResponse;
 import com.hcl.mortgage.app.dto.RequestPojo;
 import com.hcl.mortgage.app.dto.ViewApplicationResponse;
 import com.hcl.mortgage.app.service.LoanApplicationService;
+import com.hcl.mortgage.app.util.LoanServiceException;
 
 @RestController
 @CrossOrigin
@@ -39,7 +42,7 @@ public class LoanApplicationController {
 	@PutMapping("/updateCreditStatus")
 	public ApplicationResponse updateCreditStatus(@RequestBody ApplicationRequest request) {
 		
-		  return loanApplicationService.updateStatus(request);
+		  return loanApplicationService.updateApplication(request);
 	}
 
 	
@@ -54,6 +57,12 @@ public class LoanApplicationController {
 	{
 		 return loanApplicationService.createapplication(requestPojo);
 		
+	}
+	
+	@PostMapping("/checkLoanEligibility")
+	public LoanEligibleResponse checkLoanEligibility(@RequestBody LoanEligibleRequest request) throws LoanServiceException
+	{
+		 return loanApplicationService.checkEligibilityForLoan(request);
 	}
 
 }

@@ -39,7 +39,7 @@ public class LoanApplicationServiceTests {
 		request.setApplicantIncome(30000.0);
 		request.setFirstName("suma");
 		request.setLastName("larna");
-		request.setTimeCreated(new Date());
+		//request.setTimeCreated(new Date());
 		request.setLoanAmount(320000.0);
 		//request.setCreditStatus("NEW");
 		request.setLoanId(1L);
@@ -51,7 +51,7 @@ public class LoanApplicationServiceTests {
 		details.setFirstName(request.getFirstName());
 		details.setLastName(request.getLastName());
 		details.setLoanAmount(request.getLoanAmount());
-		details.setTimeCreated(request.getTimeCreated());
+		//details.setTimeCreated(request.getTimeCreated());
 		details.setCreditStatus("NEW");
 		details.setLoanId(request.getLoanId());
 		
@@ -63,7 +63,7 @@ public class LoanApplicationServiceTests {
 		response1.setStatusCode(200);
 		response1.setMessage("Update application successfully with reference number: "+1L);
 		
-		ApplicationResponse response=loanServiceImpl.updateStatus(request);
+		ApplicationResponse response=loanServiceImpl.updateApplication(request);
 		
 		Assert.assertEquals(response.toString(), response1.toString());
 	}
@@ -93,7 +93,7 @@ public class LoanApplicationServiceTests {
 		response1.setStatusCode(200);
 		response1.setMessage("APPROVED successfully with reference number: "+1L);
 		
-		ApplicationResponse response=loanServiceImpl.updateStatus(request);
+		ApplicationResponse response=loanServiceImpl.updateApplication(request);
 		
 		Assert.assertEquals(response.toString(), response1.toString());
 	}
@@ -127,7 +127,7 @@ public class LoanApplicationServiceTests {
 		response1.setStatusCode(200);
 		response1.setMessage("FUNDED successfully with reference number: "+1L);
 		
-		ApplicationResponse response=loanServiceImpl.updateStatus(request);
+		ApplicationResponse response=loanServiceImpl.updateApplication(request);
 		
 		Assert.assertEquals(response.toString(), response1.toString());
 	}
