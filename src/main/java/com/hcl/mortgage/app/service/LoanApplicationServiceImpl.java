@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.hcl.mortgage.app.dto.ApplicationQueueListResponse;
 import com.hcl.mortgage.app.dto.CreateResponse;
+import com.hcl.mortgage.app.dto.ApplicationQueueListResponse;
 import com.hcl.mortgage.app.dto.QueueListDto;
 import com.hcl.mortgage.app.dto.RequestPojo;
 import com.hcl.mortgage.app.entity.LoanDetails;
